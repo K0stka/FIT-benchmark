@@ -11,9 +11,9 @@ const Page: NextPage = async () => {
 	return (
 		<div className="container py-10">
 			<div className="mb-8 text-center">
-				<h1 className="mb-4 text-4xl font-bold">Welcome to FIT Benchmark</h1>
+				<h1 className="mb-4 text-4xl font-bold">Vítejte v FIT Benchmark</h1>
 				<p className="text-muted-foreground text-lg">
-					Test and benchmark your algorithms against challenging problems
+					Testujte a benchmarkujte své algoritmy proti náročným problémům
 				</p>
 			</div>
 
@@ -21,22 +21,22 @@ const Page: NextPage = async () => {
 				<Card>
 					<CardHeader>
 						<Code className="mb-2 h-8 w-8" />
-						<CardTitle>Submit Solutions</CardTitle>
-						<CardDescription>Upload your implementation and see how it performs</CardDescription>
+						<CardTitle>Odesílejte řešení</CardTitle>
+						<CardDescription>Nahrajte svou implementaci a sledujte, jak si vede</CardDescription>
 					</CardHeader>
 				</Card>
 				<Card>
 					<CardHeader>
 						<TrendingUp className="mb-2 h-8 w-8" />
-						<CardTitle>Track Performance</CardTitle>
-						<CardDescription>Get detailed metrics on execution time and efficiency</CardDescription>
+						<CardTitle>Sledujte výkon</CardTitle>
+						<CardDescription>Získejte podrobné metriky o době provádění a efektivitě</CardDescription>
 					</CardHeader>
 				</Card>
 				<Card>
 					<CardHeader>
 						<Award className="mb-2 h-8 w-8" />
-						<CardTitle>Compete</CardTitle>
-						<CardDescription>Compare your results with other users</CardDescription>
+						<CardTitle>Soutěžte</CardTitle>
+						<CardDescription>Porovnejte své výsledky s ostatními uživateli</CardDescription>
 					</CardHeader>
 				</Card>
 			</div>
@@ -44,16 +44,16 @@ const Page: NextPage = async () => {
 			<div className="flex justify-center gap-4">
 				{auth ? (
 					<Link href="/benchmarks">
-						<Button size="lg">Browse Benchmarks</Button>
+						<Button size="lg">Procházet benchmarky</Button>
 					</Link>
 				) : (
 					<>
 						<Link href="/login">
-							<Button size="lg">Login</Button>
+							<Button size="lg">Přihlásit se</Button>
 						</Link>
 						<Link href="/register">
 							<Button size="lg" variant="outline">
-								Register
+								Zaregistrovat se
 							</Button>
 						</Link>
 					</>

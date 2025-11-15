@@ -53,9 +53,9 @@ export default function SubmitSolutionPage({ params }: { params: { id: string } 
 	return (
 		<div className="container py-10">
 			<div className="mb-8">
-				<h1 className="text-3xl font-bold">Submit Your Solution</h1>
+				<h1 className="text-3xl font-bold">Odeslat své řešení</h1>
 				<p className="text-muted-foreground mt-2">
-					Upload your source code file to be tested and benchmarked.
+					Nahrajte svůj zdrojový kód, který bude testován a benchmarkován.
 				</p>
 			</div>
 
@@ -63,9 +63,9 @@ export default function SubmitSolutionPage({ params }: { params: { id: string } 
 				<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
 					<Card>
 						<CardHeader>
-							<CardTitle>Source Code</CardTitle>
+							<CardTitle>Zdrojový kód</CardTitle>
 							<CardDescription>
-								Upload your implementation file or paste the code directly.
+								Nahrajte soubor s implementací nebo vložte kód přímo.
 							</CardDescription>
 						</CardHeader>
 						<CardContent className="space-y-4">
@@ -74,7 +74,7 @@ export default function SubmitSolutionPage({ params }: { params: { id: string } 
 									htmlFor="file-upload"
 									className="hover:bg-muted/50 border-input flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-dashed px-4 py-6 text-sm font-medium transition-colors">
 									<Upload className="h-5 w-5" />
-									Click to upload a file
+									Klikněte pro nahrání souboru
 									<input
 										id="file-upload"
 										type="file"
@@ -90,11 +90,11 @@ export default function SubmitSolutionPage({ params }: { params: { id: string } 
 								name="filename"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Filename</FormLabel>
+										<FormLabel>Název souboru</FormLabel>
 										<FormControl>
-											<Input placeholder="e.g., solution.c" {...field} />
+											<Input placeholder="např. solution.c" {...field} />
 										</FormControl>
-										<FormDescription>The name of your source file</FormDescription>
+										<FormDescription>Název vašeho zdrojového souboru</FormDescription>
 										<FormMessage />
 									</FormItem>
 								)}
@@ -105,10 +105,10 @@ export default function SubmitSolutionPage({ params }: { params: { id: string } 
 								name="sourceCode"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Source Code</FormLabel>
+										<FormLabel>Zdrojový kód</FormLabel>
 										<FormControl>
 											<Textarea
-												placeholder="Paste your code here or upload a file above..."
+												placeholder="Vložte svůj kód sem nebo nahrajte soubor výše..."
 												className="font-mono min-h-[300px] text-sm"
 												{...field}
 												value={fileContent || field.value}
@@ -127,11 +127,11 @@ export default function SubmitSolutionPage({ params }: { params: { id: string } 
 
 					<div className="flex justify-end gap-4">
 						<Button type="button" variant="outline" onClick={() => router.back()}>
-							Cancel
+							Zrušit
 						</Button>
 						<PendingButton pending={pending} type="submit">
 							<Upload className="mr-2 h-4 w-4" />
-							Submit Solution
+							Odeslat řešení
 						</PendingButton>
 					</div>
 				</form>

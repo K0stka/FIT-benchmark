@@ -9,6 +9,6 @@ export const deleteBenchmarkAction = action({
 	schema: benchmarkIdSchema,
 	async action(data) {
 		await deleteBenchmark(data.id);
-		return ActionSuccess("Benchmark deleted successfully");
+		return ActionSuccess("Benchmark byl úspěšně smazán");
 	},
 });

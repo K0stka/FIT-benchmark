@@ -9,6 +9,6 @@ export const createBenchmarkAction = action({
 	schema: benchmarkSchema,
 	async action(data) {
 		const benchmark = await createBenchmark(data);
-		return ActionSuccess(`Benchmark "${benchmark.name}" created successfully`);
+		return ActionSuccess(`Benchmark "${benchmark.name}" byl úspěšně vytvořen`);
 	},
 });

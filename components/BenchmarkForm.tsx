@@ -35,8 +35,8 @@ export function BenchmarkForm({ initialData, onSubmit, pending, submitLabel }: B
 			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
 				<Card>
 					<CardHeader>
-						<CardTitle>Basic Information</CardTitle>
-						<CardDescription>General details about the benchmark</CardDescription>
+						<CardTitle>Základní informace</CardTitle>
+						<CardDescription>Obecné údaje o benchmarku</CardDescription>
 					</CardHeader>
 					<CardContent className="space-y-4">
 						<FormField
@@ -44,9 +44,9 @@ export function BenchmarkForm({ initialData, onSubmit, pending, submitLabel }: B
 							name="name"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Name</FormLabel>
+									<FormLabel>Název</FormLabel>
 									<FormControl>
-										<Input placeholder="e.g., Matrix Multiplication" {...field} />
+										<Input placeholder="např. Násobení matic" {...field} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -57,10 +57,10 @@ export function BenchmarkForm({ initialData, onSubmit, pending, submitLabel }: B
 							name="description"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Description</FormLabel>
+									<FormLabel>Popis</FormLabel>
 									<FormControl>
 										<Textarea
-											placeholder="Describe what this benchmark tests..."
+											placeholder="Popište, co tento benchmark testuje..."
 											className="min-h-[100px]"
 											{...field}
 										/>
@@ -74,8 +74,8 @@ export function BenchmarkForm({ initialData, onSubmit, pending, submitLabel }: B
 
 				<Card>
 					<CardHeader>
-						<CardTitle>Build Configuration</CardTitle>
-						<CardDescription>Commands used to compile the submitted code</CardDescription>
+						<CardTitle>Konfigurace sestavení</CardTitle>
+						<CardDescription>Příkazy používané pro kompilaci odeslaného kódu</CardDescription>
 					</CardHeader>
 					<CardContent className="space-y-4">
 						<FormField
@@ -83,11 +83,11 @@ export function BenchmarkForm({ initialData, onSubmit, pending, submitLabel }: B
 							name="buildCommandPreview"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Build Command Preview</FormLabel>
+									<FormLabel>Náhled příkazu pro sestavení</FormLabel>
 									<FormControl>
-										<Input placeholder="e.g., gcc -O2 -o solution solution.c" {...field} />
+										<Input placeholder="např. gcc -O2 -o solution solution.c" {...field} />
 									</FormControl>
-									<FormDescription>A human-readable preview of the build command</FormDescription>
+									<FormDescription>Čitelný náhled příkazu pro sestavení</FormDescription>
 									<FormMessage />
 								</FormItem>
 							)}
@@ -97,14 +97,14 @@ export function BenchmarkForm({ initialData, onSubmit, pending, submitLabel }: B
 							name="buildCommandTemplate"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Build Command Template</FormLabel>
+									<FormLabel>Šablona příkazu pro sestavení</FormLabel>
 									<FormControl>
 										<Textarea
-											placeholder="e.g., gcc -O2 -o {{OUTPUT}} {{SOURCE}}"
+											placeholder="např. gcc -O2 -o {{OUTPUT}} {{SOURCE}}"
 											{...field}
 										/>
 									</FormControl>
-									<FormDescription>Template with placeholders for the actual build command</FormDescription>
+									<FormDescription>Šablona s proměnnými pro skutečný příkaz pro sestavení</FormDescription>
 									<FormMessage />
 								</FormItem>
 							)}
@@ -114,14 +114,14 @@ export function BenchmarkForm({ initialData, onSubmit, pending, submitLabel }: B
 							name="buildDebugCommandTemplate"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Build Debug Command Template</FormLabel>
+									<FormLabel>Šablona příkazu pro sestavení s debugováním</FormLabel>
 									<FormControl>
 										<Textarea
-											placeholder="e.g., gcc -g -o {{OUTPUT}} {{SOURCE}}"
+											placeholder="např. gcc -g -o {{OUTPUT}} {{SOURCE}}"
 											{...field}
 										/>
 									</FormControl>
-									<FormDescription>Template for building with debug symbols</FormDescription>
+									<FormDescription>Šablona pro sestavení s debug symboly</FormDescription>
 									<FormMessage />
 								</FormItem>
 							)}
@@ -131,8 +131,8 @@ export function BenchmarkForm({ initialData, onSubmit, pending, submitLabel }: B
 
 				<Card>
 					<CardHeader>
-						<CardTitle>Scoring</CardTitle>
-						<CardDescription>How the benchmark results are scored</CardDescription>
+						<CardTitle>Hodnocení</CardTitle>
+						<CardDescription>Jak jsou výsledky benchmarku hodnoceny</CardDescription>
 					</CardHeader>
 					<CardContent className="space-y-4">
 						<FormField
@@ -140,10 +140,10 @@ export function BenchmarkForm({ initialData, onSubmit, pending, submitLabel }: B
 							name="scoreCalculationDescription"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Score Calculation Description</FormLabel>
+									<FormLabel>Popis výpočtu skóre</FormLabel>
 									<FormControl>
 										<Textarea
-											placeholder="Describe how the score is calculated from benchmark results..."
+											placeholder="Popište, jak se skóre vypočítává z výsledků benchmarku..."
 											className="min-h-[100px]"
 											{...field}
 										/>
@@ -157,7 +157,7 @@ export function BenchmarkForm({ initialData, onSubmit, pending, submitLabel }: B
 
 				<div className="flex justify-end gap-4">
 					<Button type="button" variant="outline" onClick={() => window.history.back()}>
-						Cancel
+						Zrušit
 					</Button>
 					<PendingButton pending={pending} type="submit">
 						{submitLabel}

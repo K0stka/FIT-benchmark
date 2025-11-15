@@ -12,6 +12,6 @@ export const updateBenchmarkAction = action({
 	async action(data) {
 		const { id, ...benchmarkData } = data;
 		const benchmark = await updateBenchmark(id, benchmarkData);
-		return ActionSuccess(`Benchmark "${benchmark.name}" updated successfully`);
+		return ActionSuccess(`Benchmark "${benchmark.name}" byl úspěšně aktualizován`);
 	},
 });

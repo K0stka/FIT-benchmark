@@ -27,11 +27,11 @@ const DashboardLayout: NextLayout = async ({ children }) => {
 					</div>
 					<nav className="flex flex-1 items-center space-x-6 text-sm font-medium">
 						<Link href="/benchmarks" className="hover:text-foreground/80 transition-colors">
-							Benchmarks
+							Benchmarky
 						</Link>
 						{auth?.type === "admin" && (
 							<Link href="/admin/benchmarks" className="hover:text-foreground/80 transition-colors">
-								Admin
+								Správa
 							</Link>
 						)}
 					</nav>
@@ -54,7 +54,7 @@ const DashboardLayout: NextLayout = async ({ children }) => {
 										<button type="submit" className="w-full">
 											<DropdownMenuItem className="cursor-pointer">
 												<LogOut className="mr-2 h-4 w-4" />
-												Logout
+												Odhlásit se
 											</DropdownMenuItem>
 										</button>
 									</form>
@@ -62,7 +62,7 @@ const DashboardLayout: NextLayout = async ({ children }) => {
 							</DropdownMenu>
 						) : (
 							<Link href="/login">
-								<Button variant="outline">Login</Button>
+								<Button variant="outline">Přihlásit se</Button>
 							</Link>
 						)}
 					</div>

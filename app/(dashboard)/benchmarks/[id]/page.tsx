@@ -31,15 +31,15 @@ const BenchmarkDetailPage = async ({ params }: { params: Promise<{ id: string }>
 			<div className="grid gap-6">
 				<Card>
 					<CardHeader>
-						<CardTitle>Build Configuration</CardTitle>
+						<CardTitle>Konfigurace sestavení</CardTitle>
 					</CardHeader>
 					<CardContent className="space-y-4">
 						<div>
-							<p className="text-muted-foreground mb-2 text-sm">Build Command</p>
+							<p className="text-muted-foreground mb-2 text-sm">Příkaz pro sestavení</p>
 							<code className="bg-muted block rounded p-3 text-sm">{benchmark.buildCommandPreview}</code>
 						</div>
 						<div>
-							<p className="text-muted-foreground mb-2 text-sm">Score Calculation</p>
+							<p className="text-muted-foreground mb-2 text-sm">Výpočet skóre</p>
 							<p className="text-sm">{benchmark.scoreCalculationDescription}</p>
 						</div>
 					</CardContent>
@@ -48,9 +48,9 @@ const BenchmarkDetailPage = async ({ params }: { params: Promise<{ id: string }>
 				{benchmark.testCases && benchmark.testCases.length > 0 && (
 					<Card>
 						<CardHeader>
-							<CardTitle>Test Cases</CardTitle>
+							<CardTitle>Testovací případy</CardTitle>
 							<CardDescription>
-								These tests are informative and help you verify your implementation is correct.
+								Tyto testy jsou informativní a pomáhají ověřit, že vaše implementace je správná.
 							</CardDescription>
 						</CardHeader>
 						<CardContent>
@@ -63,7 +63,7 @@ const BenchmarkDetailPage = async ({ params }: { params: Promise<{ id: string }>
 												<h4 className="font-semibold">{testCase.name}</h4>
 												<Badge variant="outline" className="text-xs">
 													<Clock className="mr-1 h-3 w-3" />
-													{testCase.timeoutSeconds}s timeout
+													{testCase.timeoutSeconds}s časový limit
 												</Badge>
 											</div>
 											<p className="text-muted-foreground mb-2 text-sm">{testCase.description}</p>
@@ -81,9 +81,9 @@ const BenchmarkDetailPage = async ({ params }: { params: Promise<{ id: string }>
 				{benchmark.benchmarkSteps && benchmark.benchmarkSteps.length > 0 && (
 					<Card>
 						<CardHeader>
-							<CardTitle>Benchmark Steps</CardTitle>
+							<CardTitle>Kroky benchmarku</CardTitle>
 							<CardDescription>
-								These are the actual steps used to evaluate your solution and calculate the score.
+								Tyto kroky se používají k vyhodnocení vašeho řešení a výpočtu skóre.
 							</CardDescription>
 						</CardHeader>
 						<CardContent>
@@ -96,7 +96,7 @@ const BenchmarkDetailPage = async ({ params }: { params: Promise<{ id: string }>
 												<h4 className="font-semibold">{step.name}</h4>
 												<Badge variant="outline" className="text-xs">
 													<Clock className="mr-1 h-3 w-3" />
-													{step.timeoutSeconds}s timeout
+													{step.timeoutSeconds}s časový limit
 												</Badge>
 											</div>
 											<p className="text-muted-foreground mb-2 text-sm">{step.description}</p>
@@ -113,7 +113,7 @@ const BenchmarkDetailPage = async ({ params }: { params: Promise<{ id: string }>
 					<Link href={`/benchmarks/${benchmark.id}/submit`}>
 						<Button size="lg">
 							<Upload className="mr-2 h-5 w-5" />
-							Submit Your Solution
+							Odeslat své řešení
 						</Button>
 					</Link>
 				</div>

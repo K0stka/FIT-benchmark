@@ -27,6 +27,6 @@ export const submitSolutionAction = action({
 			submittedAt: new Date(),
 		});
 
-		return ActionSuccess("Solution submitted successfully! It will be processed shortly.");
+		return ActionSuccess("Řešení bylo úspěšně odesláno! Bude brzy zpracováno.");
 	},
 });

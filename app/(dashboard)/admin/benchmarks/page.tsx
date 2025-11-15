@@ -14,8 +14,8 @@ const AdminBenchmarksPage: NextPage = async () => {
 			<div className="container py-10">
 				<Card>
 					<CardHeader>
-						<CardTitle>Unauthorized</CardTitle>
-						<CardDescription>You do not have permission to access this page.</CardDescription>
+						<CardTitle>Neautorizovaný přístup</CardTitle>
+						<CardDescription>Nemáte oprávnění k přístupu na tuto stránku.</CardDescription>
 					</CardHeader>
 				</Card>
 			</div>
@@ -28,13 +28,13 @@ const AdminBenchmarksPage: NextPage = async () => {
 		<div className="container py-10">
 			<div className="mb-8 flex items-center justify-between">
 				<div>
-					<h1 className="text-3xl font-bold">Manage Benchmarks</h1>
-					<p className="text-muted-foreground mt-2">Create and edit benchmarks for users to submit solutions.</p>
+					<h1 className="text-3xl font-bold">Správa benchmarků</h1>
+					<p className="text-muted-foreground mt-2">Vytvářejte a upravujte benchmarky pro uživatele.</p>
 				</div>
 				<Link href="/admin/benchmarks/new">
 					<Button>
 						<Plus className="mr-2 h-4 w-4" />
-						New Benchmark
+						Nový benchmark
 					</Button>
 				</Link>
 			</div>
@@ -43,7 +43,7 @@ const AdminBenchmarksPage: NextPage = async () => {
 				{benchmarks.length === 0 ? (
 					<Card>
 						<CardContent className="py-10 text-center">
-							<p className="text-muted-foreground">No benchmarks yet. Create your first benchmark to get started.</p>
+							<p className="text-muted-foreground">Zatím žádné benchmarky. Vytvořte svůj první benchmark.</p>
 						</CardContent>
 					</Card>
 				) : (
@@ -57,7 +57,7 @@ const AdminBenchmarksPage: NextPage = async () => {
 									</div>
 									<Link href={`/admin/benchmarks/${benchmark.id}/edit`}>
 										<Button variant="outline" size="sm">
-											Edit
+											Upravit
 										</Button>
 									</Link>
 								</div>
@@ -65,10 +65,10 @@ const AdminBenchmarksPage: NextPage = async () => {
 							<CardContent>
 								<div className="text-muted-foreground text-sm">
 									<p className="mb-2">
-										<span className="font-medium">Build Command:</span> {benchmark.buildCommandPreview}
+										<span className="font-medium">Příkaz pro sestavení:</span> {benchmark.buildCommandPreview}
 									</p>
 									<p>
-										<span className="font-medium">Score Calculation:</span> {benchmark.scoreCalculationDescription}
+										<span className="font-medium">Výpočet skóre:</span> {benchmark.scoreCalculationDescription}
 									</p>
 								</div>
 							</CardContent>

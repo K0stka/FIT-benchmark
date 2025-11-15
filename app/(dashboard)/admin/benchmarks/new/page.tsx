@@ -20,11 +20,11 @@ export default function NewBenchmarkPage() {
 	return (
 		<div className="container py-10">
 			<div className="mb-8">
-				<h1 className="text-3xl font-bold">Create New Benchmark</h1>
-				<p className="text-muted-foreground mt-2">Set up a new benchmark for users to submit their solutions.</p>
+				<h1 className="text-3xl font-bold">Vytvořit nový benchmark</h1>
+				<p className="text-muted-foreground mt-2">Nastavte nový benchmark pro uživatele.</p>
 			</div>
 
-			<BenchmarkForm onSubmit={handleSubmit} pending={pending} submitLabel="Create Benchmark" />
+			<BenchmarkForm onSubmit={handleSubmit} pending={pending} submitLabel="Vytvořit benchmark" />
 		</div>
 	);
 }

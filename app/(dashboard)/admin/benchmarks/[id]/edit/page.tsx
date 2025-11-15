@@ -36,7 +36,7 @@ export default function EditBenchmarkPage({ params }: { params: { id: string } }
 	if (loading) {
 		return (
 			<div className="container py-10">
-				<p>Loading...</p>
+				<p>Načítání...</p>
 			</div>
 		);
 	}
@@ -44,7 +44,7 @@ export default function EditBenchmarkPage({ params }: { params: { id: string } }
 	if (!benchmark) {
 		return (
 			<div className="container py-10">
-				<p>Benchmark not found</p>
+				<p>Benchmark nenalezen</p>
 			</div>
 		);
 	}
@@ -52,8 +52,8 @@ export default function EditBenchmarkPage({ params }: { params: { id: string } }
 	return (
 		<div className="container py-10">
 			<div className="mb-8">
-				<h1 className="text-3xl font-bold">Edit Benchmark</h1>
-				<p className="text-muted-foreground mt-2">Update the benchmark configuration.</p>
+				<h1 className="text-3xl font-bold">Upravit benchmark</h1>
+				<p className="text-muted-foreground mt-2">Aktualizujte konfiguraci benchmarku.</p>
 			</div>
 
 			<BenchmarkForm
@@ -67,7 +67,7 @@ export default function EditBenchmarkPage({ params }: { params: { id: string } }
 				}}
 				onSubmit={handleSubmit}
 				pending={pending}
-				submitLabel="Update Benchmark"
+				submitLabel="Aktualizovat benchmark"
 			/>
 		</div>
 	);
