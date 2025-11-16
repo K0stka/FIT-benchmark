@@ -3,6 +3,9 @@ import NextAuth from "next-auth";
 import { User } from "../types";
 
 export const AuthBase = {
+	pages: {
+		signIn: "/login",
+	},
 	callbacks: {
 		async jwt({ token, user }) {
 			if (user) {
