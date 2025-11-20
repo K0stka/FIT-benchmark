@@ -1,25 +1,16 @@
 version: "3.8"
 
 services:
-    postgres:
-        image: postgres:15-alpine
-        environment:
-            POSTGRES_USER: postgres
-            POSTGRES_PASSWORD: password
-            POSTGRES_DB: fit_benchmark
-        volumes:
-            - postgres_data:/var/lib/postgresql/data
-        ports:
-            - "5432:5432"
-
     app:
         build:
             context: .
             dockerfile: Dockerfile
             target: runner
+            args:
+                BUILDKIT_INLINE_CACHE: 1
         environment:
             NODE_ENV: production
-            DATABASE_URL: postgres://postgres:password@postgres:5432/fit_benchmark
+            DATABASE_URL: ${DATABASE_URL}
             AUTH_SECRET: "supersecret" # Change this in production
             AUTH_URL: "http://localhost:3000"
             UPLOAD_PATH: "/app/uploads"
@@ -28,38 +19,43 @@ services:
         volumes:
             - uploads:/app/uploads
         depends_on:
-            - postgres
+            - docker
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
 
     worker:
         build:
             context: .
-            dockerfile: Dockerfile
-            target: runner
-        command: ["npx", "tsx", "worker/index.ts"]
+            dockerfile: worker/Dockerfile
         environment:
             NODE_ENV: production
-            DATABASE_URL: postgres://postgres:password@postgres:5432/fit_benchmark
-            UPLOAD_PATH: "/app/uploads"
+            DATABASE_URL: ${DATABASE_URL}
+            UPLOAD_DIR: "/app/uploads"
             DOCKER_HOST: tcp://docker:2375
+            # Add this to fix the docker-py connection issue?
+            # DOCKER_TLS_VERIFY: ""
             TMPDIR: /workspace
         volumes:
             - uploads:/app/uploads
             - shared-workspace:/workspace
         depends_on:
-            - postgres
             - docker
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
 
     docker:
         image: docker:dind
         privileged: true
         environment:
             DOCKER_TLS_CERTDIR: ""
+        dns:
+            - 8.8.8.8
+            - 8.8.4.4
         volumes:
             - shared-workspace:/workspace
             - docker_data:/var/lib/docker
 
 volumes:
-    postgres_data:
     uploads:
     shared-workspace:
     docker_data:
