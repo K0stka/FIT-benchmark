@@ -371,6 +371,7 @@ def process_job(job, db_conn, docker_client):
 def main():
     logger.info("Starting Worker (Python)...")
     
+    client = None
     # Initialize Docker Client with retry logic
     max_retries = 5
     for i in range(max_retries):
@@ -385,8 +386,12 @@ def main():
             logger.warning(f"Docker initialization failed (attempt {i+1}/{max_retries}): {e}")
             if i == max_retries - 1:
                 logger.critical(f"Docker initialization gave up: {e}")
-                return # Or exit(1) to restart container
+                return # Exit if we can't connect to Docker
             time.sleep(5)
+
+    if not client:
+        logger.critical("Exiting because Docker client could not be initialized.")
+        return
 
     while True:
         conn = get_db_connection()
