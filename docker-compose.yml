@@ -1,0 +1,65 @@
+version: "3.8"
+
+services:
+    postgres:
+        image: postgres:15-alpine
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: password
+            POSTGRES_DB: fit_benchmark
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+        ports:
+            - "5432:5432"
+
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            target: runner
+        environment:
+            NODE_ENV: production
+            DATABASE_URL: postgres://postgres:password@postgres:5432/fit_benchmark
+            AUTH_SECRET: "supersecret" # Change this in production
+            AUTH_URL: "http://localhost:3000"
+            UPLOAD_PATH: "/app/uploads"
+        ports:
+            - "3000:3000"
+        volumes:
+            - uploads:/app/uploads
+        depends_on:
+            - postgres
+
+    worker:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            target: runner
+        command: ["npx", "tsx", "worker/index.ts"]
+        environment:
+            NODE_ENV: production
+            DATABASE_URL: postgres://postgres:password@postgres:5432/fit_benchmark
+            UPLOAD_PATH: "/app/uploads"
+            DOCKER_HOST: tcp://docker:2375
+            TMPDIR: /workspace
+        volumes:
+            - uploads:/app/uploads
+            - shared-workspace:/workspace
+        depends_on:
+            - postgres
+            - docker
+
+    docker:
+        image: docker:dind
+        privileged: true
+        environment:
+            DOCKER_TLS_CERTDIR: ""
+        volumes:
+            - shared-workspace:/workspace
+            - docker_data:/var/lib/docker
+
+volumes:
+    postgres_data:
+    uploads:
+    shared-workspace:
+    docker_data:

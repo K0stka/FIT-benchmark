@@ -67,6 +67,8 @@ export const TestCases = pgTable(
 		testCommandPreview: text("test_command_preview").notNull(),
 		testCommandTemplate: text("test_command_template").notNull(),
 		timeoutSeconds: integer("timeout_seconds").notNull(),
+		input: text("input").notNull().default(""),
+		expectedOutput: text("expected_output").notNull().default(""),
 	},
 	(table) => [index("test_cases_benchmark_id_key").on(table.benchmarkId)]
 );
@@ -182,7 +184,13 @@ export const BenchmarkResults = pgTable(
 	]
 );
 
-export const TestCaseResultStatus = pgEnum("test_case_result_status", ["passed", "failed", "timed_out", "error"]);
+export const TestCaseResultStatus = pgEnum("test_case_result_status", [
+	"passed",
+	"failed",
+	"timed_out",
+	"error",
+	"memory_error",
+]);
 
 export const TestCaseResults = pgTable(
 	"test_case_results",
@@ -196,6 +204,7 @@ export const TestCaseResults = pgTable(
 			.references(() => TestCases.id),
 		status: TestCaseResultStatus("status").notNull(),
 		executionTimeMilliseconds: integer("execution_time_milliseconds").notNull(),
+		memoryUsageBytes: integer("memory_usage_bytes"),
 	},
 	(table) => [
 		index("test_case_results_benchmark_result_id_key").on(table.benchmarkResultId),

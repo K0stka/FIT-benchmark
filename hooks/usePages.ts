@@ -1,4 +1,4 @@
-import { LucideIcon, Star } from "lucide-react";
+import { BarChart, LucideIcon, Plus, Star } from "lucide-react";
 
 import { Either } from "@/lib/utilityTypes";
 import { User } from "@/lib/types";
@@ -17,11 +17,33 @@ export const usePages = (user: Pick<User, "type"> | null): Page[] => {
 	if (isAuthorized(user, "anonymous")) {
 		pages.push({ path: "/login", extendable: true }, { path: "/register" }, { path: "/logged-out" });
 	} else if (isAuthorized(user, "user")) {
-		pages.push({
-			title: "Moje výsledky",
-			icon: Star,
-			path: "/my-results",
-		});
+		pages.push(
+			{
+				title: "Benchmarks",
+				icon: BarChart,
+				path: "/benchmarks",
+				extendable: true,
+			},
+			{
+				title: "Moje výsledky",
+				icon: Star,
+				path: "/my-results",
+			},
+			{
+				title: "Nastavení",
+				icon: Star,
+				path: "/settings",
+			}
+		);
+
+		if (isAuthorized(user, "admin")) {
+			pages.push({
+				title: "Admin",
+				icon: Plus,
+				path: "/admin",
+				extendable: true,
+			});
+		}
 	}
 
 	return pages;
